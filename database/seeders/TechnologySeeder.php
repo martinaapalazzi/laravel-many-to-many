@@ -22,7 +22,7 @@ class TechnologySeeder extends Seeder
             Technology::truncate();
         });
 
-        $allTechnologys = [
+        $allTechnologies = [
             'News',
             'Updates',
             'Release',
@@ -36,7 +36,7 @@ class TechnologySeeder extends Seeder
             'ChatGPT',
         ];
 
-        foreach ($allTechnologys as $singleTech) {
+        foreach ($allTechnologies as $singleTech) {
             $tech = Technology::create([
                 'title' => $singleTech,
                 'slug' => str()->slug($singleTech),

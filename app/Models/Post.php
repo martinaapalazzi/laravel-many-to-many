@@ -18,11 +18,18 @@ class Post extends Model
     /*
         Relationships
     */
+
     public function type()
     {
         return $this->belongsTo(Type::class); // un Post ha solo un Type
         // funzione che indentifica la relazione one-to-many
         // e Post è la taballa dipendente
         // in cui Type è la tabella indipendente
+    }
+
+    public function technologies()
+    {
+        return $this->belongsToMany(Technology::class); // un Post ha solo un Type
+        // funzione che indentifica la relazione many-to-many
     }
 }
