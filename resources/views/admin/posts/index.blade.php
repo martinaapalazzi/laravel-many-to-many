@@ -25,6 +25,7 @@
                                     <th scope="col">Title</th>
                                     <th scope="col">Slug</th>
                                     <th scope="col">Type</th>
+                                    <th scope="col">Technology</th>
                                     <th scope="col">Created at</th>
                                     <th scope="col">Show post</th>
                                     <th scope="col">edit post</th>

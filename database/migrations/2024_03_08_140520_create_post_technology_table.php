@@ -12,8 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('post_technology', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            // $table->id(); Lo togliamo perchè vogliamo solo post id e technology id
+            //$table->timestamps();
+
+            $table->unsignedBigInteger('post_id');
+            $table->foreign('post_id')
+                ->references('id')
+                ->on('posts')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->unsignedBigInteger('post_id');
+            $table->foreign('post_id')
+                  ->references('id')
+                  ->on('posts')
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
+                  
+            $table->primary(['post_id', 'tag_id']);
         });
     }
 
