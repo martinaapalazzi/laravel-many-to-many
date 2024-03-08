@@ -22,14 +22,14 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->unsignedBigInteger('post_id');
-            $table->foreign('post_id')
+            $table->unsignedBigInteger('technology_id');
+            $table->foreign('technology_id')
                   ->references('id')
-                  ->on('posts')
+                  ->on('technologies')
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
                   
-            $table->primary(['post_id', 'tag_id']);
+            $table->primary(['post_id', 'technology_id']);
         });
     }
 
