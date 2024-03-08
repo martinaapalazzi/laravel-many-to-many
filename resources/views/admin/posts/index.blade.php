@@ -47,6 +47,15 @@
                                                 -
                                             @endif
                                         </td>
+                                        <td>
+                                            @if ($post->technology != null)
+                                                <a href="{{ route('admin.technology.show', ['technology' => $post->technology->id]) }}">
+                                                    {{ $post->technology->title }}
+                                                </a>
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
                                         <td>{{ $post->created_at->format('H:i d/m/Y') }}</td>
                                         <td>
                                             <a href="{{ route('admin.posts.show', ['post' => $post->slug]) }}" class="btn btn-xs btn-primary">
