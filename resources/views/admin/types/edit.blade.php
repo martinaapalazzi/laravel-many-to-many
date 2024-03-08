@@ -12,7 +12,7 @@
                     </h1>
                     
                     <div class="mb-4">
-                        <a href="{{ route('admin.posts.index') }}" class="btn btn-primary">
+                        <a href="{{ route('admin.types.index') }}" class="btn btn-primary">
                             Go back to Types Page
                         </a>
                     </div>

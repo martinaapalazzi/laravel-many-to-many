@@ -10,7 +10,7 @@
 
                     <div class="mb-4">
                         <a href="{{ route('admin.types.index') }}" class="btn btn-primary">
-                            Go back to Posts Page
+                            Go back to Types Page
                         </a>
                     </div>
                     

@@ -8,12 +8,12 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="text-center text-success">
-                        Create a new Type
+                        Create a new Technology
                     </h1>
 
                     <div class="mb-4">
-                        <a href="{{ route('admin.types.index') }}" class="btn btn-primary">
-                            Go back to Posts Page
+                        <a href="{{ route('admin.technologies.index') }}" class="btn btn-primary">
+                            Go back to Techologies Page
                         </a>
                     </div>
         

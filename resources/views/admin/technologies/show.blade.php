@@ -9,17 +9,17 @@
                 <div class="card-body">
 
                     <div class="mb-4">
-                        <a href="{{ route('admin.types.index') }}" class="btn btn-primary">
-                            Go back to Posts Page
+                        <a href="{{ route('admin.technologies.index') }}" class="btn btn-primary">
+                            Go back to Technologies Page
                         </a>
                     </div>
                     
                     <h1 class="text-center text-success">
-                        {{ $type->title }}
+                        {{ $technology->title }}
                     </h1>
                     
                     <ul>
-                        @foreach ($type->posts as $post)
+                        @foreach ($technology->posts as $post)
                             <li>
                                 <a href="{{ route('admin.posts.show', ['post' => $post->id]) }}">
                                     {{ $post->title }}
