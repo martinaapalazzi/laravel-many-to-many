@@ -48,13 +48,13 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($post->technology != null)
-                                                <a href="{{ route('admin.technology.show', ['technology' => $post->technology->id]) }}">
-                                                    {{ $post->technology->title }}
+                                            @forelse ($post->technologies as $technology)
+                                                <a href="{{ route('admin.technologies.show', ['technology' => $technology->id]) }}" class="badge rounded-pill text-bg-primary">
+                                                    {{ $technology->title }}
                                                 </a>
-                                            @else
+                                            @empty
                                                 -
-                                            @endif
+                                            @endforelse
                                         </td>
                                         <td>{{ $post->created_at->format('H:i d/m/Y') }}</td>
                                         <td>

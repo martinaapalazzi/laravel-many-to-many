@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 //Models
 use App\Models\Post;
+use App\Models\Technology;
 use App\Models\Type;
 
 
@@ -27,7 +28,8 @@ class PostController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.posts.create', compact('types'));
+        $technologies = Technology::all();
+        return view('admin.posts.create', compact('types', 'technologies'));
     }
 
     /**
@@ -40,6 +42,7 @@ class PostController extends Controller
             'slug' => 'nullable|max:1000',
             'content' => 'nullable|max:1000',
             'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'nullable|array|exists:technology,id'
         //   chiavi = name="" degli input 
         ]);
 
@@ -63,6 +66,7 @@ class PostController extends Controller
     public function edit(string $slug)
     {
         $types = Type::all();
+        $types = Technology::all();
         $post = Post::where('slug', $slug)->firstOrFail();
         return view('admin.posts.edit',compact('post', 'types'));
     }
@@ -78,6 +82,7 @@ class PostController extends Controller
             'slug' => 'nullable|max:1000',
             'content' => 'nullable|max:1000',
             'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'nullable|array|exists:technology,id'
         //   chiavi = name="" degli input 
         ]);
 

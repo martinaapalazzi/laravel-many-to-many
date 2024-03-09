@@ -42,11 +42,6 @@
                             <textarea class="form-control" id="slug" name="slug" rows="3" placeholder="enter the slug..."></textarea value="{{ old ('slug', $technology->slug)}}">
                         </div>
         
-                        <div class="mb-3">
-                            <label for="content" class="form-label">Content</label>
-                            <textarea class="form-control" id="content" name="content" rows="3" placeholder="enter the content..."></textarea value="{{ old ('content', $technology->content)}}">
-                        </div>
-        
                         <div>
                             <button type="submit" class="btn btn-success w-100">
                                 Update the post

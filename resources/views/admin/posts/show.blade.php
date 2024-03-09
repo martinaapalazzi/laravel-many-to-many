@@ -19,6 +19,18 @@
                             {{ $post->content }}
                         </p>
                     </div>
+                    <div>
+                        <p>
+                            Type:
+                            {{ $post->type->title }}
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            Tech:
+                           {{-- {{ $post->technology->title }} --}} 
+                        </p>
+                    </div>
 
                 </div>
             </div>

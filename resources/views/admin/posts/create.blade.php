@@ -36,12 +36,12 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="type_id" class="form-label">Categoria</label>
+                            <label for="type_id" class="form-label">Type</label>
                             <select name="type_id" id="type_id" class="form-select">
                                 <option
                                     value="{{ old('type_id') == null ? 'selected' : '' }}"
                                     {{ old('type_id') == null ? 'selected' : '' }}>
-                                    Seleziona una categoria...
+                                    Select a type...
                                 </option>
                                 @foreach ($types as $type)
                                     <option
