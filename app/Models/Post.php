@@ -13,7 +13,8 @@ class Post extends Model
         'title',
         'slug',
         'content',
-        'type_id'
+        'type_id',
+        'technologies'
     ];
 
     /*

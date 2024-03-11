@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             TypeSeeder::class,
             PostSeeder::class,
             TechnologySeeder::class,
+            PostTechnologyRelationshipSeeder::class
         ]);
     }
 }
