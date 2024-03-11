@@ -46,7 +46,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <form class="d-inline-block" action="{{ route('admin.technologies.destroy', ['technology' => $technology->slug]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this technology?');">
+                                            <form class="d-inline-block" action="{{ route('admin.technologies.destroy', ['technology' => $technology->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this technology?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">

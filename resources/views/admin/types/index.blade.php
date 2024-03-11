@@ -46,7 +46,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <form class="d-inline-block" action="{{ route('admin.types.destroy', ['type' => $type->slug]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this type');">
+                                            <form class="d-inline-block" action="{{ route('admin.types.destroy', ['type' => $type->id]) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this type');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">
