@@ -42,11 +42,17 @@ class PostController extends Controller
             'slug' => 'nullable|max:1000',
             'content' => 'nullable|max:1000',
             'type_id' => 'nullable|exists:types,id',
-            'technologies' => 'nullable|array|exists:technology,id'
+            'technologies' => 'nullable|array|exists:technologies,id'
         //   chiavi = name="" degli input 
         ]);
 
         $post = Post::create($validationResult);
+
+        if (isset($validationResult['technologies'])) {
+            foreach ($validationResult['technologies'] as $singleTechnologyId) {
+                $post->technologies()->attach($singleTechnologyId);
+            }
+        };
 
         return redirect()->route('admin.posts.show', ['post' => $post->slug]);
     }
@@ -66,9 +72,9 @@ class PostController extends Controller
     public function edit(string $slug)
     {
         $types = Type::all();
-        $types = Technology::all();
+        $technologies = Technology::all();
         $post = Post::where('slug', $slug)->firstOrFail();
-        return view('admin.posts.edit',compact('post', 'types'));
+        return view('admin.posts.edit',compact('post', 'types', 'technologies'));
     }
 
     /**
@@ -82,11 +88,18 @@ class PostController extends Controller
             'slug' => 'nullable|max:1000',
             'content' => 'nullable|max:1000',
             'type_id' => 'nullable|exists:types,id',
-            'technologies' => 'nullable|array|exists:technology,id'
+            'technologies' => 'nullable|array|exists:technologies,id'
         //   chiavi = name="" degli input 
         ]);
 
         $post->update($validationResult);
+
+        if (isset($validationResult['technologies'])) {
+                $post->technologies()->sync($validationResult['technologies']);
+        }
+        else {
+            $post->technologies()->detach();
+        };
 
         return redirect()->route('admin.posts.show', ['post' => $post->slug]);
     }
