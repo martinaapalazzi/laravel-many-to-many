@@ -58,8 +58,6 @@ class PostController extends Controller
 
         $post = Post::create($validationResult);
 
-        dd($validationResult);
-
         if (isset($validationResult['technologies'])) {
             foreach ($validationResult['technologies'] as $singletechnologyId) {
 
@@ -103,9 +101,36 @@ class PostController extends Controller
             'content' => 'nullable|max:1000',
             'type_id' => 'nullable|exists:types,id',
             //'technologies' => 'nullable|array|exists:technologies,id',
-            'cover_img' => 'nullable|image'
+            'cover_img' => 'nullable|image',
+            'delete_cover_img' => 'nullable|boolean'
+
         //   chiavi = name="" degli input 
         ]);
+
+        /*
+            Per la cover_img, abbiamo 3 possibilità:
+            1) Aggiungere una nuova immagine, se prima non ce n'era una                 OK
+            2) Rimuovere l'immagine pre-esistente                                       OK
+            3) Sostituire l'immagine pre-esistente con una nuova                        OK
+                -> Scatenare l'operazione di sostituzione dell'immagine vuol dire che:
+                    - Nel form mi è stata passata l'immagine
+                    - EEEEE nel $post già ce n'era una
+            4) Non fare niente                                                          OK
+        */
+
+        $imgPath = $post->cover_img;
+        if (isset($validationResult['cover_img'])) {
+            if ($post->cover_img != null) {
+                Storage::disk('public')->delete($post->cover_img);
+            }
+
+            $imgPath = Storage::disk('public')->put('images', $validationResult['cover_img']);
+        }
+        else if (isset($validationResult['delete_cover_img'])) {
+            Storage::disk('public')->delete($post->cover_img);
+
+            $imgPath = null;
+        }
 
         $post->update($validationResult);
 
@@ -124,6 +149,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->cover_img != null) {
+            Storage::disk('public')->delete($post->cover_img);
+        }
+
         $post->delete();
 
         return redirect()->route('admin.posts.index');

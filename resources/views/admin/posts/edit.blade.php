@@ -83,6 +83,21 @@
                         <div class="mb-3">
                             <label for="cover_img" class="form-label">Cover image</label>
                             <input class="form-control" type="file" id="cover_img" name="cover_img">
+
+                            @if ($post->cover_img != null)
+                                <div class="mt-2">
+                                    <h4>
+                                        Copertina attuale:
+                                    </h4>
+                                    <img src="/storage/{{ $post->cover_img }}" style="max-width: 400px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" id="delete_cover_img" name="delete_cover_img">
+                                        <label class="form-check-label" for="delete_cover_img">
+                                            Rimuovi immagine
+                                        </label>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
         
                         <div class="mb-3">
