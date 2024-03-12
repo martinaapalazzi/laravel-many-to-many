@@ -58,7 +58,17 @@
                             @foreach ($technologies as $technology)
                                 <div class="form-check form-check-inline">
                                     <input
-                                        {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}
+                                        {{-- Devo aggiungere l'attributo checked quando:
+                                                - l'id delle technologies su cui sto ciclando ora corrisponde ad uno degli id delle technologies che troviamo nella
+                                                - se l'id delle technologies su cui sto ciclando ora è presente nell'array old('technologies')
+                                        --}}   
+                                        @if ($errors->any())
+                                            @if (old('technologies') != null && in_array($technology->id, old ('technologies')))
+                                                checked
+                                            @endif
+                                        @elseif ($post->technologies->contains($technology->id))
+                                            checked
+                                        @endif
                                         class="form-check-input"
                                         type="checkbox"
                                         id="technology-{{ $technology->id }}"

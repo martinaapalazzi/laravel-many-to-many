@@ -57,11 +57,20 @@
                             @foreach ($technologies as $technology)
                                 <div class="form-check form-check-inline">
                                     <input
-                                        {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}
+                                        {{--  Qua ci metto checked solo se l'id di questa technology su cui sto ciclando ora è presente nell'arrat --}}
+                                        @if (old('technologies') != null && in_array($technology->id, old('technologies')))
+                                        {{-- 
+                                            OPPURE:
+                                            @if(in_array($technology->id, old('technologies'.[])))
+                                        --}}
+                                            checked
+                                        @endif
+                                        {{-- {{ old('technologies') != null && in_array($technology->id, old('technologies')) ? 'checked' : '' }} --}}
+                                        {{-- {{ in_array($technology->id, old('technologies'.[])) ? 'checked' : '' }} --}}
                                         class="form-check-input"
                                         type="checkbox"
                                         id="technology-{{ $technology->id }}"
-                                        name="technologies[]"
+                                        name="technologies[]" {{-- perche noi lo abbiamo validato come array --}}
                                         value="{{ $technology->id }}">
                                     <label class="form-check-label" for="technology-{{ $technology->id }}">{{ $technology ->title }}</label>
                                 </div>

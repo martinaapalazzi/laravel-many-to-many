@@ -48,14 +48,18 @@ class PostController extends Controller
 
         $post = Post::create($validationResult);
 
+        dd($validationResult);
+
         if (isset($validationResult['technologies'])) {
-            foreach ($validationResult['technologies'] as $singleTechnologyId) {
-                $post->technologies()->attach($singleTechnologyId);
+            foreach ($validationResult['technologies'] as $singletechnologyId) {
+
+                $post->technologies()->attach($singletechnologyId);
             }
-        };
+        }
 
         return redirect()->route('admin.posts.show', ['post' => $post->slug]);
     }
+    
 
     /**
      * Display the specified resource.
@@ -95,7 +99,7 @@ class PostController extends Controller
         $post->update($validationResult);
 
         if (isset($validationResult['technologies'])) {
-                $post->technologies()->sync($validationResult['technologies']);
+            $post->technologies()->sync($validationResult['technologies']);
         }
         else {
             $post->technologies()->detach();
