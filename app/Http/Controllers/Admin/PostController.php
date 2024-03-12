@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+//Helpers
+use Illuminate\Support\Facades\Storage;
+
 //Models
 use App\Models\Post;
 use App\Models\Technology;
@@ -42,9 +45,16 @@ class PostController extends Controller
             'slug' => 'nullable|max:1000',
             'content' => 'nullable|max:1000',
             'type_id' => 'nullable|exists:types,id',
-            'technologies' => 'nullable|array|exists:technologies,id'
-        //   chiavi = name="" degli input 
+            //'technologies' => 'nullable|array|exists:technologies,id',
+            'cover_img' => 'nullable|image',
+        //  chiavi = name="" degli input 
         ]);
+
+        $imgPath = null;
+
+        if (isset($validationResult['cover_img'])) {
+            $imgPath = Storage::disk('public')->put('images', $validationResult['cover_img']);
+        }
 
         $post = Post::create($validationResult);
 
@@ -92,7 +102,8 @@ class PostController extends Controller
             'slug' => 'nullable|max:1000',
             'content' => 'nullable|max:1000',
             'type_id' => 'nullable|exists:types,id',
-            'technologies' => 'nullable|array|exists:technologies,id'
+            //'technologies' => 'nullable|array|exists:technologies,id',
+            'cover_img' => 'nullable|image'
         //   chiavi = name="" degli input 
         ]);
 

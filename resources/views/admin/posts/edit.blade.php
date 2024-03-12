@@ -27,7 +27,7 @@
                     </div>
                     @endif
 
-                    <form action="{{ route('admin.posts.update', ['post'=> $post->slug]) }}" method="POST">
+                    <form action="{{ route('admin.posts.update', ['post'=> $post->slug]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         @method('PUT')
@@ -55,6 +55,7 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="type_id" class="form-label d-block">Technology</label>
                             @foreach ($technologies as $technology)
                                 <div class="form-check form-check-inline">
                                     <input
@@ -77,6 +78,11 @@
                                     <label class="form-check-label" for="technology-{{ $technology->id }}">{{ $technology ->title }}</label>
                                 </div>
                             @endforeach
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="cover_img" class="form-label">Cover image</label>
+                            <input class="form-control" type="file" id="cover_img" name="cover_img">
                         </div>
         
                         <div class="mb-3">
