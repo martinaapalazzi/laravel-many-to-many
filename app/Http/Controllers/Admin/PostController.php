@@ -45,11 +45,10 @@ class PostController extends Controller
             'slug' => 'nullable|max:1000',
             'content' => 'nullable|max:1000',
             'type_id' => 'nullable|exists:types,id',
-            //'technologies' => 'nullable|array|exists:technologies,id',
+            'technologies' => 'nullable|array|exists:technologies,id',
             'cover_img' => 'nullable|image',
         //  chiavi = name="" degli input 
         ]);
-
         $imgPath = null;
 
         if (isset($validationResult['cover_img'])) {
@@ -61,9 +60,9 @@ class PostController extends Controller
 
         if (isset($validationResult['technologies'])) {
             foreach ($validationResult['technologies'] as $singletechnologyId) {
-
                 $post->technologies()->attach($singletechnologyId);
             }
+            
         }
 
         return redirect()->route('admin.posts.show', ['post' => $post->slug]);
@@ -101,7 +100,7 @@ class PostController extends Controller
             'slug' => 'nullable|max:1000',
             'content' => 'nullable|max:1000',
             'type_id' => 'nullable|exists:types,id',
-            //'technologies' => 'nullable|array|exists:technologies,id',
+            'technologies' => 'nullable|array|exists:technologies,id',
             'cover_img' => 'nullable|image',
             'delete_cover_img' => 'nullable|boolean'
 

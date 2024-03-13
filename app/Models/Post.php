@@ -14,7 +14,6 @@ class Post extends Model
         'slug',
         'content',
         'type_id',
-        'technologies',
         'cover_img'
     ];
 
