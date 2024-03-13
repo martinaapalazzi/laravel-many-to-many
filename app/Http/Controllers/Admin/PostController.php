@@ -56,6 +56,7 @@ class PostController extends Controller
             $imgPath = Storage::disk('public')->put('images', $validationResult['cover_img']);
         }
 
+        $validationResult['cover_img'] = $imgPath;
         $post = Post::create($validationResult);
 
         if (isset($validationResult['technologies'])) {
@@ -132,6 +133,7 @@ class PostController extends Controller
             $imgPath = null;
         }
 
+        $validationResult['cover_img'] = $imgPath;
         $post->update($validationResult);
 
         if (isset($validationResult['technologies'])) {
